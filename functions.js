@@ -8,17 +8,6 @@ function checkForLibraryByTypeOf(caller, type){
     }
 }
 
-function checkForLibrary(lib){
-	setTimeout(function(){
-    if (checkForLibraryByTypeOf(lib, "function")){
-        console.log("Found Library!")
-    } else {
-        console.log("Couldn't find library, resetting timer...")
-		setTimeout(self, 50)
-    }
-}, 50)
-}
-
 function runFakeTerminal() {
     if (term._initialized) {
       return;
