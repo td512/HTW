@@ -8,7 +8,15 @@ function checkForLibraryByTypeOf(caller, type){
     }
 }
 
-function runFakeTerminal() {
+function writeBootSequenceWithIndex(index){
+	term.writeln(boot_text[index])
+	if (index < boot_text.length - 1) {
+		setTimeout(function(){ writeBootSequenceWithIndex(index+1) }, 45)
+	}
+}
+
+
+let runTerminal = async function() {
     if (term._initialized) {
       return;
     }
@@ -18,27 +26,27 @@ function runFakeTerminal() {
     term.prompt = () => {
       term.write('\r\n$ ');
     };
-
-    term.writeln('Welcome to xterm.js');
-    term.writeln('This is a local terminal emulation, without a real terminal in the back-end.');
-    term.writeln('Type some keys and commands to play around.');
-    term.writeln('');
-    prompt(term);
-
+	
+    
     term.onData(e => {
       switch (e) {
         case '\r': // Enter
         case '\u0003': // Ctrl+C
-          prompt(term);
+		  if (app_ready) {
+			prompt(term);
+		  }
           break;
         case '\u007F': // Backspace (DEL)
           // Do not delete the prompt
-          if (term._core.buffer.x > 2) {
+          if (term._core.buffer.x > 2 && app_ready) {
             term.write('\b \b');
           }
           break;
         default: // Print all other characters for demo
-          term.write(e);
+		  if (app_ready) {
+			  term.write(e);
+		  }
+          
       }
     });
   }
