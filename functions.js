@@ -12,6 +12,8 @@ function writeBootSequenceWithIndex(index){
 	term.writeln(boot_text[index])
 	if (index < boot_text.length - 1) {
 		setTimeout(function(){ writeBootSequenceWithIndex(index+1) }, 45)
+	} else if (index == 0) {
+		console.log("Play boot animation")
 	}
 }
 

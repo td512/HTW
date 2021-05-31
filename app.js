@@ -11,9 +11,7 @@ setTimeout(function(){
 		fitAddon = new FitAddon.FitAddon()
 		term.loadAddon(fitAddon)
 		term.open(document.getElementById('terminal'))
-		console.log(term.rows)
 		fitAddon.fit()
-		console.log(term.rows)
 		console.log("Ready!")
 		$.get("Text/Boot.txt", function(data){
 			data.split(/\r\n|\n/).forEach((line) => {
@@ -30,11 +28,13 @@ setTimeout(function(){
 			let options = {
 				strings: strings,
 				typeSpeed: 40,
+				showCursor: false,
+				autoInsertCss: false,
 				preStringTyped: function(){ setTimeout(function(){ writeBootSequenceWithIndex(0) }, 20) },
 				onComplete: function(){ 
 					$('.loading').removeClass('alert-primary').addClass('alert-danger')
 					setTimeout(function(){ term.clear() }, 450)
-					setTimeout(function(){ $('.loading').hide() }, 3500)
+					setTimeout(function(){ $('.loading').fadeOut("slow") }, 3500)
 				}
 				
 			}
