@@ -1,10 +1,10 @@
-function loadjscssfile(filename, filetype){
-    if (filetype=="js"){ // if filename contains js
+function loadjscssfile(filename){
+    if (filename.split('.').pop()=="js"){ // if filename contains js
         var fileref=document.createElement('script')
         fileref.setAttribute("type","text/javascript")
         fileref.setAttribute("src", filename)
     }
-    else if (filetype=="css"){ //if filename contains css
+    else if (filename.split('.').pop()=="css"){ //if filename contains css
         var fileref=document.createElement("link")
         fileref.setAttribute("rel", "stylesheet")
         fileref.setAttribute("type", "text/css")
