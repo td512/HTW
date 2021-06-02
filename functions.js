@@ -8,9 +8,14 @@ function checkForLibraryByTypeOf(caller, type){
     }
 }
 
+function setWindowTitle(title){
+    window.document.title = title
+}
+
 function playNextStoryElement(storyElementId){
     elementData = storyElements.elements[storyElementId]
     console.log(`Loading Story Element '${elementData.name}'`)
+    setWindowTitle(`${elementData.name}`)
     $.get(`${elementData.directory}/${elementData.fileName}`, function(data){
         console.log(`Playing Story Element '${elementData.name}'`)
         playStoryElement(data, 0, elementData.typeDelay, elementData.loadDelay, elementData.lineByLine, function() { playNextStoryElement(storyElementId + 1) })
