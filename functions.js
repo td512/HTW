@@ -14,9 +14,28 @@ function writeBootSequenceWithIndex(index){
 		setTimeout(function(){ writeBootSequenceWithIndex(index+1) }, 45)
 	} else if (index == 0) {
 		console.log("Play boot animation")
-	}
+	} else {
+        setTimeout(function(){
+            $.get("Text/IntroSpeech.txt", function(data){
+                term.clear()
+                playStoryElement(data, 0, 100, 1500)
+            })
+        }, 45)
+    }
 }
 
+function playStoryElement(storyData, sequenceIndex, syncTime, initialLoadoutTime){
+    if (sequenceIndex == 0) {
+        console.log("Play story element")
+        setTimeout(function(){
+            term.write(storyData[sequenceIndex])
+            setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime)}, syncTime)
+        }, initialLoadoutTime)
+    } else if (sequenceIndex < storyData.length - 1) {
+        term.write(storyData[sequenceIndex])
+        setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime)}, syncTime)
+    }
+}
 
 let runTerminal = async function() {
     if (term._initialized) {

@@ -18,29 +18,11 @@ setTimeout(function(){
 				boot_text.push(line)
 			})
 		})
-		$('.loading').removeClass('alert-primary').addClass('alert-success').html("<p>Loaded!</p>")
-		strings = []
-		$.get("Text/IntroSpeech.txt", function(data){
-			string = strings.push(data)	
-		})
+		$('.loading').parent().removeClass('alert-primary').addClass('alert-success').html("<p class='loading'>Loaded!</p>")
 		setTimeout(function(){
-			$('.loading').removeClass('alert-success').addClass('alert-primary').html("")
-			let options = {
-				strings: strings,
-				typeSpeed: 40,
-				showCursor: false,
-				autoInsertCss: false,
-				preStringTyped: function(){ setTimeout(function(){ writeBootSequenceWithIndex(0) }, 20) },
-				onComplete: function(){ 
-					$('.loading').removeClass('alert-primary').addClass('alert-danger')
-					setTimeout(function(){ term.clear() }, 450)
-					setTimeout(function(){ $('.loading').fadeOut("slow") }, 3500)
-				}
-				
-			}
-		
-			let typed = new Typed('.loading', options)
-		}, 1500)
+			$('.loading').parent().fadeOut("slow")
+			setTimeout(function(){ writeBootSequenceWithIndex(0) }, 20)
+		}, 450)
 		
 		runTerminal()
 	}
