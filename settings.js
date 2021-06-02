@@ -1,5 +1,4 @@
 app_ready = false
-local_text = ""
 storyElements = {
     "elements": [
         {
@@ -14,8 +13,8 @@ storyElements = {
             "name": "Introduction - Bit",
             "fileName": "IntroSpeech.txt",
             "directory": "Text",
-            "loadDelay": 20,
-            "typeDelay": 20,
+            "loadDelay": 1500,
+            "typeDelay": 100,
             "lineByLine": false
         }
     ]
