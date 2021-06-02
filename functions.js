@@ -8,32 +8,42 @@ function checkForLibraryByTypeOf(caller, type){
     }
 }
 
-function writeBootSequenceWithIndex(index){
-	term.writeln(boot_text[index])
-	if (index < boot_text.length - 1) {
-		setTimeout(function(){ writeBootSequenceWithIndex(index+1) }, 45)
-	} else if (index == 0) {
-		console.log("Play boot animation")
-	} else {
-        setTimeout(function(){
-            $.get("Text/IntroSpeech.txt", function(data){
-                term.clear()
-                playStoryElement(data, 0, 100, 1500)
-            })
-        }, 45)
-    }
+function playNextStoryElement(storyElementId){
+    elementData = storyElements.elements[storyElementId]
+    console.log(`Loading Story Element '${elementData.name}'`)
+    $.get(`${elementData.directory}/${elementData.fileName}`, function(data){
+        console.log(`Playing Story Element '${elementData.name}'`)
+        playStoryElement(data, 0, elementData.typeDelay, elementData.loadDelay, elementData.lineByLine, playNextStoryElement(storyElementId + 1))
+    })
 }
 
-function playStoryElement(storyData, sequenceIndex, syncTime, initialLoadoutTime){
-    if (sequenceIndex == 0) {
-        console.log("Play story element")
-        setTimeout(function(){
+function playStoryElement(storyData, sequenceIndex, syncTime, initialLoadoutTime, lineByLine, callback){
+    console.log(lineByLine)
+    if (lineByLine){
+        localStoryData = storyData.split(/\r\n|\n/)
+        if (sequenceIndex == 0) {
+            setTimeout(function(){
+                term.writeln(localStoryData[sequenceIndex])
+                setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
+            }, initialLoadoutTime)
+        } else if (sequenceIndex < localStoryData.length - 1) {
+            term.writeln(localStoryData[sequenceIndex])
+            setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
+        } else {
+            callback
+        }
+    } else {
+        if (sequenceIndex == 0) {
+            setTimeout(function(){
+                term.write(storyData[sequenceIndex])
+                setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
+            }, initialLoadoutTime)
+        } else if (sequenceIndex < storyData.length - 1) {
             term.write(storyData[sequenceIndex])
-            setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime)}, syncTime)
-        }, initialLoadoutTime)
-    } else if (sequenceIndex < storyData.length - 1) {
-        term.write(storyData[sequenceIndex])
-        setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime)}, syncTime)
+            setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
+        } else {
+            callback
+        }
     }
 }
 

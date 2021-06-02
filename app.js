@@ -13,15 +13,12 @@ setTimeout(function(){
 		term.open(document.getElementById('terminal'))
 		fitAddon.fit()
 		console.log("Ready!")
-		$.get("Text/Boot.txt", function(data){
-			data.split(/\r\n|\n/).forEach((line) => {
-				boot_text.push(line)
-			})
-		})
 		$('.loading').parent().removeClass('alert-primary').addClass('alert-success').html("<p class='loading'>Loaded!</p>")
 		setTimeout(function(){
 			$('.loading').parent().fadeOut("slow")
-			setTimeout(function(){ writeBootSequenceWithIndex(0) }, 20)
+			setTimeout(function(){
+				playNextStoryElement(0)
+			})
 		}, 450)
 		
 		runTerminal()
