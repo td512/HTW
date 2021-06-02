@@ -13,16 +13,16 @@ function playNextStoryElement(storyElementId){
     console.log(`Loading Story Element '${elementData.name}'`)
     $.get(`${elementData.directory}/${elementData.fileName}`, function(data){
         console.log(`Playing Story Element '${elementData.name}'`)
-        playStoryElement(data, 0, elementData.typeDelay, elementData.loadDelay, elementData.lineByLine, playNextStoryElement(storyElementId + 1))
+        playStoryElement(data, 0, elementData.typeDelay, elementData.loadDelay, elementData.lineByLine, function() { playNextStoryElement(storyElementId + 1) })
     })
 }
 
 function playStoryElement(storyData, sequenceIndex, syncTime, initialLoadoutTime, lineByLine, callback){
-    console.log(lineByLine)
     if (lineByLine){
         localStoryData = storyData.split(/\r\n|\n/)
         if (sequenceIndex == 0) {
             setTimeout(function(){
+                term.clear()
                 term.writeln(localStoryData[sequenceIndex])
                 setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
             }, initialLoadoutTime)
@@ -30,11 +30,12 @@ function playStoryElement(storyData, sequenceIndex, syncTime, initialLoadoutTime
             term.writeln(localStoryData[sequenceIndex])
             setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
         } else {
-            callback
+            callback()
         }
     } else {
         if (sequenceIndex == 0) {
             setTimeout(function(){
+                term.clear()
                 term.write(storyData[sequenceIndex])
                 setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
             }, initialLoadoutTime)
@@ -42,7 +43,7 @@ function playStoryElement(storyData, sequenceIndex, syncTime, initialLoadoutTime
             term.write(storyData[sequenceIndex])
             setTimeout(function(){ playStoryElement(storyData, sequenceIndex+1, syncTime, initialLoadoutTime, lineByLine, callback)}, syncTime)
         } else {
-            callback
+            callback()
         }
     }
 }
