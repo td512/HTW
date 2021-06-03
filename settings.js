@@ -16,6 +16,15 @@ storyElements = {
             "loadDelay": 1500,
             "typeDelay": 100,
             "lineByLine": false
+        },
+        {
+            "name": "The End",
+            "fileName": "Ending.txt",
+            "directory": "Text",
+            "audio": "Audio/EndingAM.wav",
+            "loadDelay": 16000,
+            "typeDelay": 85,
+            "lineByLine": false
         }
     ]
 }
