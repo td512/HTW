@@ -1,3 +1,5 @@
-#terminal {position: absolute !important; top: 0; right: 0; bottom: 0; left: 0; z-index: -1;}
-.loading {position: relative: z-index: 0;}
-.container {position: relative; z-index: 0;}
+#terminal {position: absolute !important; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; }
+.loading {position: relative: z-index: 0; }
+.container {position: relative; z-index: 0; }
+audio { display:none; }
+#userConsent { color: blue; cursor: pointer; }
