@@ -14,15 +14,19 @@ setTimeout(function(){
 		fitAddon.fit()
 		console.log("Ready!")
 		setWindowTitle("Loaded | Please Wait")
-		$('.loading').parent().removeClass('alert-primary').addClass('alert-success').html("<p class='loading'>Loaded!</p>")
-		setTimeout(function(){
-			$('.loading').parent().fadeOut("slow")
+		$('.loading').parent().removeClass('alert-primary').addClass('alert-success').html("<p class='loading'>Loaded! <span id='userConsent'>Ready?</span></p>")
+		$('#userConsent').on('click', function (){
+			$('#userConsent').off('click')
 			setTimeout(function(){
-				playNextStoryElement(0)
-			})
-		}, 450)
-		
-		runTerminal()
+				$('.loading').parent().fadeOut("slow")
+				setTimeout(function(){
+					playNextStoryElement(0)
+				})
+			}, 450)
+
+			runTerminal()
+		})
+
 	}
 }, 1500)
 
