@@ -12,9 +12,43 @@ function setWindowTitle(title){
     window.document.title = title
 }
 
+function fadeAudioOut(step, sequenceTime, callback){
+    if ($('#audio').is('audio')) {
+        let audio = document.getElementById('audio')
+        console.log(`Found Audio Element - Fading: Volume@${audio.volume}`)
+        if (audio.volume > step) {
+            audio.volume -= step
+            setTimeout(function () {
+                fadeAudioOut(step, sequenceTime, callback)
+            }, sequenceTime)
+        } else {
+            audio.pause()
+            callback()
+        }
+    } else {
+        console.log("No Audio Element Found")
+        callback()
+    }
+}
+
+function insertOrReplaceAudio(audioFile){
+    console.log("Replacing Audio")
+    if ($('#audio').is('audio')) {
+        $('#audio').remove()
+    }
+    $('body').append(`<audio autoplay="true" src="${audioFile}" id="audio">`)
+    audio = document.getElementById('audio')
+    audio.currentTime = 0
+    audio.volume = 1
+    audio.play()
+}
+
 function playNextStoryElement(storyElementId){
     elementData = storyElements.elements[storyElementId]
     console.log(`Loading Story Element '${elementData.name}'`)
+    if (elementData.audio){
+        fadeAudioOut(0.05, 50, function(){insertOrReplaceAudio(elementData.audio)})
+    }
     setWindowTitle(`${elementData.name}`)
     $.get(`${elementData.directory}/${elementData.fileName}`, function(data){
         console.log(`Playing Story Element '${elementData.name}'`)
