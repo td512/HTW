@@ -5,6 +5,7 @@ storyElements = {
             "name": "Boot Animation",
             "fileName": "Boot.txt",
             "directory": "Text",
+            "audio":"Audio/Bit.mp3",
             "loadDelay": 20,
             "typeDelay": 50,
             "lineByLine": true
@@ -13,7 +14,7 @@ storyElements = {
             "name": "Introduction - Bit",
             "fileName": "IntroSpeech.txt",
             "directory": "Text",
-            "loadDelay": 1500,
+            "loadDelay": 4000,
             "typeDelay": 100,
             "lineByLine": false
         },
