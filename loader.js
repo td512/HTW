@@ -1,4 +1,6 @@
 function loadjscssfile(filename){
+    // Detects and inserts HTML elements into the page, allowing dynamic load of libraries
+    // and styles.
     if (filename.split('.').pop()=="js"){ // if filename contains js
         var fileref=document.createElement('script')
         fileref.setAttribute("type","text/javascript")
