@@ -14,7 +14,7 @@ setTimeout(function(){
 		fitAddon.fit()
 		console.log("Ready!")
 		setWindowTitle("Loaded | Please Wait")
-		$('.loading').parent().removeClass('alert-primary').addClass('alert-success').html("<p class='loading'>Loaded! <span id='userConsent'>Ready?</span></p>")
+		$('.loading').parent().removeClass('alert-primary').addClass('alert-success').html("<p class='loading'>Loaded! <b>Make sure to enable sound.</b> <span id='userConsent'>Ready?</span></p>")
 		$('#userConsent').on('click', function (){
 			$('#userConsent').off('click')
 			setTimeout(function(){
