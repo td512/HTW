@@ -71,6 +71,8 @@ function playNextStoryElement(storyElementId){
     } else {
         app_ready = true
         term.clear()
+        term.clear()
+        term.writeln("Welcome to Core OS // _stuck? try 'help'")
         prompt(term)
     }
 
@@ -119,11 +121,15 @@ function executeCommand(input){
     })
     if (commandIndex == -1) {
         term.write("\r\n")
-        term.writeln(`${commandInput[0]}: command not found`)
+        if (input != "") term.writeln(`${commandInput[0]}: command not found`)
     } else {
         term.write("\r\n")
         let fn = window[storyElements.commands[commandIndex].executes]
-        if (typeof fn === "function") fn(commandInput.shift())
+        if (input.indexOf(" ") == -1 && typeof fn === "function"){
+            fn()
+        } else if (input.indexOf(" ") >= 0 && typeof fn === "function") {
+            fn(commandInput.slice(1).join(""))
+        }
     }
 }
 
