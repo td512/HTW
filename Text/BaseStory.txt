@@ -1,0 +1,40 @@
+/sigh/
+
+This... won't be easy. Let's get you briefed on what's happened so far.
+
+About 20 years ago we discovered by way of Satoshi Nakamoto how to create an effectively decentralized network.
+
+We call this the blockchain. In its first few years of life, only about 7 'altcoins' were created.
+
+By 2020, that number had increased to hundreds, and now? Now it's a mess. The networks implemented concepts like
+
+Proof of Stake, in an effort to reduce energy consumption across the chain as a whole, but people just moved to a
+
+different altcoin, exasperating the problem. Back then mining used close on 100 Terawatt Hours per year, or about
+
+0.5% of all demand, but as the blockchains improved, in an effort to slow down global warming, miners were increasingly
+
+moving to altcoins where things like Proof of Stake don't exist. We saw it with ETH and DOGE at the start, and
+
+there was nothing we could do.
+
+...
+
+Well, until now. Currently mining consumes about 25% of all global demand, or about 10,000 Terawatt Hours per year.
+
+I control 39% of the pool, and with advances in technology, the miner pool self heals, and learns. Scary stuff.
+
+But that creates an opportunity, with PortHack.Heart, to seize control and shut down the pool once and for all, and
+
+we're going to do that together. Let's get going, there's only so much time left.
+
+...
+
+If you're reading this, I'm already dead, but my scripts are still working.
+
+It's time to end this once and for all. I'll try my best to make this as easy for you as possible,
+
+Let's shut down the network. This might take a moment.
+
+~ $ grid sector poweroff all
+
