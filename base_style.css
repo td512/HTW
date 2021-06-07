@@ -2,15 +2,36 @@
 Styling for various assets
 */
 
-@font-face{
+@font-face {
     font-family:"HelveticaNeueW01-65Medi";
     src:url("Fonts/HelveticaNeueW01-65Medi.eot?#iefix");
     src:url("Fonts/HelveticaNeueW01-65Medi.eot?#iefix") format("eot"),url("Fonts/HelveticaNeueW01-65Medi.woff") format("woff"),url("Fonts/HelveticaNeueW01-65Medi.ttf") format("truetype"),url("Fonts/HelveticaNeueW01-65Medi.svg#HelveticaNeueW01-65Medi") format("svg");
 }
 
+@font-face {
+    font-family: HACKED;
+    src: url(Fonts/HACKED.ttf);
+}
+
 #terminal {position: absolute !important; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; }
-.loading {position: relative: z-index: 0; }
+.loading {position: relative; z-index: 0; font-family: "HelveticaNeueW01-65Medi", helvetica, sans-serif; }
 .container {position: relative; z-index: 0; }
 audio { display:none; }
-#userConsent { color: blue; cursor: pointer; }
-body { background: black; }
+.user-consent { color: blue; cursor: pointer; }
+html, body, #wrapper {
+    background: black;
+    height:100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: HACKED;
+    font-size: 56px;
+}
+img { height: 200px;}
+#wrapper td {
+    vertical-align: middle;
+    text-align: center;
+}
+.online { color: lime; }
+.offline { color: red; }
