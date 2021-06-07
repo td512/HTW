@@ -20,7 +20,10 @@ setTimeout(function(){
 			setTimeout(function(){
 				$('#wrapper').fadeOut("slow")
 				setTimeout(function(){
+					$('#wrapper').addClass('back')
+					$('#terminal').addClass('front')
 					$('.user-consent').remove()
+					$('.online').removeClass('online').addClass("offline").html("Cluster Offline")
 					playNextStoryElement(0)
 				}, 500)
 			}, 450)

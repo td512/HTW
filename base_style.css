@@ -33,5 +33,11 @@ img { height: 200px;}
     vertical-align: middle;
     text-align: center;
 }
+#wrapper {
+    position: relative;
+}
+
+.back { z-index: -100 !important; }
+.front { z-index: 100 !important; }
 .online { color: lime; }
 .offline { color: red; }

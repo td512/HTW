@@ -69,11 +69,13 @@ function playNextStoryElement(storyElementId){
             })
         })
     } else {
-        app_ready = true
-        term.clear()
-        term.clear()
-        term.writeln("Welcome to Core OS // _stuck? try 'help'")
-        prompt(term)
+        setTimeout(function(){
+            app_ready = true
+            term.clear()
+            term.clear()
+            term.writeln("Welcome to Core OS // _stuck? try 'help'")
+            prompt(term)
+        }, 3000)
     }
 
 }
@@ -150,6 +152,25 @@ function helpDoc(input = null){
             term.writeln("Type `help name' to find out more about the function `name'.")
             term.writeln("help poweroff")
     }
+}
+
+function powerDownSystem(input = null){
+    app_ready = false
+    term.writeln("Broadcast message from PortHack.Heart (unknown)")
+    term.writeln("")
+    term.writeln("You've done it, you've actually done it. In 10 seconds the cluster will fall offline.")
+    term.writeln("Thank you.")
+    term.writeln("")
+    setTimeout(function(){
+        term.writeln("Broadcast message from root@(none) (tty/0)")
+        term.writeln("")
+        term.writeln("The system is going down for system halt NOW!")
+    }, 2500)
+    setTimeout(function(){
+        $('#wrapper').removeClass('back')
+        $('#terminal').removeClass('front')
+        $('#wrapper').fadeIn("slow")
+    }, 10000)
 }
 
 let runTerminal = async function() {
